@@ -1,3 +1,4 @@
+
 package problem4;
 
 import java.util.*;
@@ -17,8 +18,8 @@ public class ListPerformanceComparison {
 
         System.out.println("---- Populate both lists ----");
         for (int i = 0; i < SIZE; i++) {
-            //code here
-            //code here
+            arrayList.add(i);
+            linkedList.add(i);
         }
 
         // 2️⃣ Random insertions and deletions
@@ -40,7 +41,17 @@ public class ListPerformanceComparison {
         Random random = new Random();
         long start = System.nanoTime();
 
-        // insert your code here
+        for(int i = 0;i<1000;i++){
+            int randomPosition = random.nextInt(list.size());
+            if (random.nextBoolean()){
+                list.add(randomPosition,random.nextInt(50000));
+            }
+            else{
+                if (!list.isEmpty()){
+                    list.remove(randomPosition);
+                }
+            }
+        }
 
         long end = System.nanoTime();
         System.out.printf("%s - Random insert/delete: %.3f ms%n",
@@ -55,9 +66,21 @@ public class ListPerformanceComparison {
         // Insertions at beginning and end
 
         // add your code here
+        for(int i = 0;i<1000;i++){
+            list.add(0,i);
+            list.add(i);
+        }
+
 
         // Deletions at beginning and end
-
+        for(int i = 0;i<1000;i++){
+            if (!list.isEmpty()) {
+                list.remove(0);
+            }
+            if (!list.isEmpty()) {
+                list.remove(list.size()-1);
+            }
+        }
         // add your code here
 
         long end = System.nanoTime();
@@ -72,6 +95,9 @@ public class ListPerformanceComparison {
         long start = System.nanoTime();
 
         long sum = 0;
+        for(int i = 0;i<list.size();i++){
+            sum += list.get(i);
+        }
         // sum of the all elements in the list
        // insert your code here
 
